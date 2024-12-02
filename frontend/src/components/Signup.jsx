@@ -1,31 +1,43 @@
 import React, { useState } from 'react';
 import styles from './Signup.module.css';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
     confirmPassword: '',
+    role: 'user', // Default role is 'user'
   });
 
   const [message, setMessage] = useState('');
+  const [error, setError] = useState(''); // To store error messages
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (formData.password !== formData.confirmPassword) {
-      setMessage('Passwords do not match!');
+      setMessage('');
+      setError('Passwords do not match!');
       return;
     }
 
-    setMessage('Signup successful!');
-    console.log('Form Data:', formData);
+    try {
+      // Axios request to submit form data (including role)
+      const response = await axios.post('/api/auth/signup', formData);
+      setMessage('Signup successful!');
+      setError('');
+      console.log('Form Data:', formData);
+    } catch (err) {
+      setError(err.response?.data?.message || 'Something went wrong!');
+      setMessage('');
+    }
   };
 
   return (
@@ -71,9 +83,23 @@ const Signup = () => {
             className={styles.input}
           />
         </div>
+        <div className={styles.formGroup}>
+          <label htmlFor="role" className={styles.label}>Role:</label>
+          <select
+            id="role"
+            name="role"
+            value={formData.role}
+            onChange={handleChange}
+            className={styles.input}
+          >
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
         <button type="submit" className={styles.button}>Sign Up</button>
         <Link to={"/signin"}>Signin</Link>
         {message && <p className={styles.message}>{message}</p>}
+        {error && <p className={styles.errorMessage}>{error}</p>}
       </form>
     </div>
   );

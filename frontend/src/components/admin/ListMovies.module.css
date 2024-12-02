@@ -1,99 +1,105 @@
+/* Container styling */
 .container {
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 20px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #edf6f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
 }
 
-h1 {
+/* Heading styling */
+.heading {
+  text-align: center;
   margin-bottom: 20px;
-  color: #2c3e50;
+  color: #005f73;
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
+/* Table styling */
 .table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 .table th,
 .table td {
+  padding: 15px;
   text-align: left;
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
 }
 
 .table th {
-  background-color: #f4f4f4;
-  color: #2c3e50;
+  background-color: #0a9396;
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.table td {
+  border-bottom: 1px solid #d9d9d9;
 }
 
 .table tr:hover {
-  background-color: #f9f9f9;
+  background-color: #f4f4f4;
 }
 
-.input {
-  width: 90%;
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+/* Thumbnail styling */
+.thumbnail {
+  max-width: 80px;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.editButton,
-.deleteButton,
-.saveButton,
-.cancelButton {
-  padding: 5px 10px;
+/* Button group styling */
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.button {
+  padding: 8px 12px;
   font-size: 14px;
+  font-weight: bold;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-right: 5px;
-  transition: background-color 0.3s;
+  transition: transform 0.2s ease-in-out;
+}
+
+.button:hover {
+  transform: scale(1.05);
 }
 
 .editButton {
-  background-color: #3498db;
-  color: #fff;
+  background-color: #94d2bd;
+  color: #001219;
 }
 
 .editButton:hover {
-  background-color: #2980b9;
+  background-color: #0a9396;
+  color: #ffffff;
 }
 
 .deleteButton {
-  background-color: #e74c3c;
-  color: #fff;
+  background-color: #ee6c4d;
+  color: #ffffff;
 }
 
 .deleteButton:hover {
-  background-color: #c0392b;
+  background-color: #bb3e26;
 }
 
-.saveButton {
-  background-color: #2ecc71;
-  color: #fff;
-}
-
-.saveButton:hover {
-  background-color: #27ae60;
-}
-
-.cancelButton {
-  background-color: #95a5a6;
-  color: #fff;
-}
-
-.cancelButton:hover {
-  background-color: #7f8c8d;
-}
-
-.link {
-  color: #3498db;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.link:hover {
-  color: #2980b9;
+/* Empty state */
+.noMovies {
+  text-align: center;
+  font-size: 18px;
+  color: #001219;
+  margin-top: 20px;
 }

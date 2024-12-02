@@ -5,15 +5,15 @@ const cloudinary = require("../utils/cloudinary");
 // Create Movie
 exports.createMovie = async (req, res, next) => {
   const { title, description } = req.body;
-  const thumbnailFile = req.files?.thumbnail;
-  const videoFile = req.files?.video;
+  const thumbnailFile = req.files?.thumbnail[0];
+  const videoFile = req.files?.video[0];
 
   try {
     // Upload thumbnail to Cloudinary
     let thumbnailUrl;
     if (thumbnailFile) {
       const uploadedThumbnail = await cloudinary.uploader.upload(
-        thumbnailFile.tempFilePath,
+        thumbnailFile.path,
         {
           folder: "movies/thumbnails",
           resource_type: "image",
@@ -25,13 +25,10 @@ exports.createMovie = async (req, res, next) => {
     // Upload video to Cloudinary
     let videoUrl;
     if (videoFile) {
-      const uploadedVideo = await cloudinary.uploader.upload(
-        videoFile.tempFilePath,
-        {
-          folder: "movies/videos",
-          resource_type: "video",
-        }
-      );
+      const uploadedVideo = await cloudinary.uploader.upload(videoFile.path, {
+        folder: "movies/videos",
+        resource_type: "video",
+      });
       videoUrl = uploadedVideo.secure_url;
     }
 
@@ -63,7 +60,7 @@ exports.updateMovie = async (req, res, next) => {
     // Handle Cloudinary uploads if files exist
     if (thumbnailFile) {
       const uploadedThumbnail = await cloudinary.uploader.upload(
-        thumbnailFile.tempFilePath,
+        thumbnailFile[0].path,
         {
           folder: "movies/thumbnails",
           resource_type: "image",
@@ -74,7 +71,7 @@ exports.updateMovie = async (req, res, next) => {
 
     if (videoFile) {
       const uploadedVideo = await cloudinary.uploader.upload(
-        videoFile.tempFilePath,
+        videoFile[0].path,
         {
           folder: "movies/videos",
           resource_type: "video",
@@ -115,7 +112,7 @@ exports.deleteMovie = async (req, res, next) => {
     }
 
     // Delete movie from MongoDB
-    await movie.remove();
+    await movie.deleteOne();
 
     res.status(200).json({ message: "Movie deleted successfully" });
   } catch (error) {

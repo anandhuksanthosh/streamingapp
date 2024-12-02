@@ -1,0 +1,77 @@
+.container {
+    padding: 20px;
+    background-color: #f4f7fb;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.searchInput {
+    padding: 8px 12px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    background-color: #ffffff;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th,
+td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+th {
+    background-color: #1e40af;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f1f5f9;
+}
+
+tr:hover {
+    background-color: #e2e8f0;
+}
+
+.toggleButton {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+.toggleButton:hover {
+    background-color: #45a049;
+}
+
+.historyButton {
+    background-color: #1e40af;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.historyButton:hover {
+    background-color: #1c3b72;
+}

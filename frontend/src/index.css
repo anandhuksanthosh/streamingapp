@@ -3,3 +3,25 @@
   padding: 0px;
   box-sizing: border-box;
 }
+:root {
+  --primary-color: #2c3e50;
+  /* Dark blue */
+  --secondary-color: #34495e;
+  /* Lighter blue */
+  --accent-color: #e74c3c;
+  /* Red for highlights */
+  --text-color: #ecf0f1;
+  /* Light text */
+  --background-color: #ecf0f1;
+  /* Light background */
+  --menu-background: #1a252f;
+  /* Dark menu background */
+  --content-background: #ffffff;
+  /* White content background */
+  --hover-color: #4a90e2;
+  /* Light blue for hover effects */
+  --border-radius: 8px;
+  /* Rounded corners */
+  --font-family: 'Roboto', sans-serif;
+  /* Modern font */
+}

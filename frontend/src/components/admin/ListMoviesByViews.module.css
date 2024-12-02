@@ -1,0 +1,74 @@
+.container {
+    padding: 20px;
+    background-color: #f4f7fb;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th,
+td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+th {
+    background-color: #1e40af;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f1f5f9;
+}
+
+tr:hover {
+    background-color: #e2e8f0;
+}
+
+.thumbnail {
+    width: 100px;
+    height: auto;
+    border-radius: 4px;
+}
+
+.editButton {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+.editButton:hover {
+    background-color: #45a049;
+}
+
+.deleteButton {
+    background-color: #e53e3e;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.deleteButton:hover {
+    background-color: #e12d39;
+}
