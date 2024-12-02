@@ -77,3 +77,12 @@ exports.userWatchHistory = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.watchLists = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user._id);
+    res.status(200).json({ watchlists: user.watchlist });
+  } catch (error) {
+    next(error);
+  }
+};

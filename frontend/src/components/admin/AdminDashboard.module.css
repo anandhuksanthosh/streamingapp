@@ -78,3 +78,18 @@
 .content {
     transition: all 0.3s ease;
 }
+.logoutButton {
+    padding: 12px;
+    font-size: 1rem;
+    color: #ff4747;
+    /* Red color */
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+}
+
+.logoutButton:hover {
+    background-color: #f3f3f3;
+}

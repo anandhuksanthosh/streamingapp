@@ -42,65 +42,69 @@ const Signup = () => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Signup</h2>
-      <form onSubmit={handleSubmit} className={styles.form}>
-        <div className={styles.formGroup}>
-          <label htmlFor="email" className={styles.label}>Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Enter your email"
-            required
-            className={styles.input}
-          />
-        </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="password" className={styles.label}>Password:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            placeholder="Enter your password"
-            required
-            className={styles.input}
-          />
-        </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="confirmPassword" className={styles.label}>Confirm Password:</label>
-          <input
-            type="password"
-            id="confirmPassword"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            placeholder="Confirm your password"
-            required
-            className={styles.input}
-          />
-        </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="role" className={styles.label}>Role:</label>
-          <select
-            id="role"
-            name="role"
-            value={formData.role}
-            onChange={handleChange}
-            className={styles.input}
-          >
-            <option value="user">User</option>
-            <option value="admin">Admin</option>
-          </select>
-        </div>
-        <button type="submit" className={styles.button}>Sign Up</button>
-        <Link to={"/signin"}>Signin</Link>
-        {message && <p className={styles.message}>{message}</p>}
+      <div className={styles.card}>
+        <h2 className={styles.title}>Create Your Account</h2>
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <div className={styles.formGroup}>
+            <label htmlFor="email" className={styles.label}>Email Address</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Enter your email"
+              required
+              className={styles.input}
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="password" className={styles.label}>Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="Enter your password"
+              required
+              className={styles.input}
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="confirmPassword" className={styles.label}>Confirm Password</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              placeholder="Re-enter your password"
+              required
+              className={styles.input}
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="role" className={styles.label}>Select Role</label>
+            <select
+              id="role"
+              name="role"
+              value={formData.role}
+              onChange={handleChange}
+              className={styles.select}
+            >
+              <option value="user">User</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+          <button type="submit" className={styles.button}>Sign Up</button>
+        </form>
+        <p className={styles.linkText}>
+          Already have an account? <Link to="/signin" className={styles.link}>Sign In</Link>
+        </p>
+        {message && <p className={styles.successMessage}>{message}</p>}
         {error && <p className={styles.errorMessage}>{error}</p>}
-      </form>
+      </div>
     </div>
   );
 };

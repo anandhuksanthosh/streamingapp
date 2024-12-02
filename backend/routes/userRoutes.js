@@ -5,6 +5,7 @@ const {
   addToWatchlist,
   removeFromWatchlist,
   userWatchHistory,
+  watchLists,
 } = require("../controllers/userController");
 const { authenticate } = require("../middlewares/authMiddleware");
 
@@ -17,5 +18,6 @@ router.get("/movies/:id/watch", watchMovie);
 router.post("/movies/:id/watchlist", addToWatchlist);
 router.delete("/movies/:id/watchlist", removeFromWatchlist);
 router.get("/history", userWatchHistory);
+router.get("/watchlists", watchLists);
 
 module.exports = router;

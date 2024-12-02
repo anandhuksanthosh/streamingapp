@@ -43,24 +43,41 @@ exports.login = async (req, res, next) => {
     const token = createToken(user._id, user.role);
     res.cookie("token", token, { httpOnly: true });
 
-    res.status(200).json({ message: "Login successful" });
+    res.status(200).json({ message: "Login successful", role: user.role });
   } catch (error) {
     next(error);
   }
 };
 
-// Reset Password
 exports.resetPassword = async (req, res, next) => {
-  const { email, newPassword } = req.body;
+  const { newPassword } = req.body; // Only need the newPassword from the request body
 
   try {
-    const user = await User.findOne({ email });
-    if (!user) return res.status(404).json({ message: "User not found" });
+    // The user is already authenticated, and their data is available in req.user
+    const user = req.user;
 
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Set the new password for the user
     user.password = newPassword;
+
+    // Save the updated user
     await user.save();
 
     res.status(200).json({ message: "Password reset successful" });
+  } catch (error) {
+    next(error);
+  }
+};
+// Logout controller
+exports.logout = (req, res, next) => {
+  try {
+    // Clear the JWT cookie by setting its expiration date to a past date
+    res.cookie("token", "", { httpOnly: true, expires: new Date(0) });
+
+    res.status(200).json({ message: "Logout successful" });
   } catch (error) {
     next(error);
   }

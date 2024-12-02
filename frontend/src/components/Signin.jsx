@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
-import styles from './Signin.module.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { userActions } from '../store';
-import axios from 'axios'; // Import axios directly
+import axios from 'axios';
+import styles from './Signin.module.css';
 
 const Signin = () => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  });
-
+  const [formData, setFormData] = useState({ email: '', password: '' });
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
   const dispatch = useDispatch();
@@ -31,17 +27,12 @@ const Signin = () => {
     }
 
     try {
-      // Sending a POST request to signin API using axios
-      const response = await axios.post('/api/auth/login', formData); // Replace with actual API endpoint
+      const response = await axios.post('/api/auth/login', formData);
       setMessage('Signin successful!');
       setError('');
-
-      // Dispatch login action to Redux store
-      const role = response.data.role; // Assuming the response contains user role
-      dispatch(userActions.userLogin({ role })); // Dispatch the role and login status
-
-      // Redirect to dashboard after successful signin
-      navigate('/dashboard'); // Replace with the appropriate route after login
+      const role = response.data.role;
+      dispatch(userActions.userLogin({ role }));
+      navigate('/dashboard');
     } catch (err) {
       setError(err.response?.data?.message || 'Something went wrong!');
       setMessage('');
@@ -53,7 +44,7 @@ const Signin = () => {
       <h2 className={styles.title}>Sign In</h2>
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.formGroup}>
-          <label htmlFor="email" className={styles.label}>Email:</label>
+          <label htmlFor="email" className={styles.label}>Email</label>
           <input
             type="email"
             id="email"
@@ -66,7 +57,7 @@ const Signin = () => {
           />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="password" className={styles.label}>Password:</label>
+          <label htmlFor="password" className={styles.label}>Password</label>
           <input
             type="password"
             id="password"
@@ -79,10 +70,10 @@ const Signin = () => {
           />
         </div>
         <button type="submit" className={styles.button}>Sign In</button>
-        <Link to={"/signup"}>Signup</Link>
         {message && <p className={styles.message}>{message}</p>}
         {error && <p className={styles.errorMessage}>{error}</p>}
       </form>
+      <Link to="/" className={styles.link}>Don't have an account? Sign Up</Link>
     </div>
   );
 };

@@ -30,7 +30,6 @@ const ListMoviesByViews = () => {
               <th>Description</th>
               <th>View Count</th>
               <th>Thumbnail</th>
-              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -45,27 +44,6 @@ const ListMoviesByViews = () => {
                     alt={movie.title}
                     className={styles.thumbnail}
                   />
-                </td>
-                <td>
-                  <button
-                    className={styles.editButton}
-                    onClick={() => window.location.href = `/admin/edit-movie/${movie._id}`}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className={styles.deleteButton}
-                    onClick={() => {
-                      if (window.confirm("Are you sure you want to delete this movie?")) {
-                        // Make the delete request here
-                        axios.delete(`/api/admin/movies/${movie._id}`).then(() => {
-                          setMovies(movies.filter(m => m._id !== movie._id));
-                        });
-                      }
-                    }}
-                  >
-                    Delete
-                  </button>
                 </td>
               </tr>
             ))}

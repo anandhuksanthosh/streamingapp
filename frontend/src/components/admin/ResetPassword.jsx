@@ -3,22 +3,23 @@ import axios from "axios";
 import styles from "./ResetPassword.module.css";
 
 const ResetPassword = () => {
-  const [email, setEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const response = await axios.post("/api/auth/reset-password", {
-        email,
         newPassword,
       });
 
       setMessage(response.data.message);
+      setError(""); // Clear any previous errors
     } catch (error) {
-      setMessage("Error resetting password. Please try again.");
+      setError("Error resetting password. Please try again.");
+      setMessage(""); // Clear any previous success messages
       console.error(error);
     }
   };
@@ -28,20 +29,6 @@ const ResetPassword = () => {
       <h2 className={styles.title}>Reset Password</h2>
 
       <form onSubmit={handleSubmit} className={styles.form}>
-        <div className={styles.formGroup}>
-          <label htmlFor="email" className={styles.label}>
-            Email Address
-          </label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className={styles.input}
-            required
-          />
-        </div>
-
         <div className={styles.formGroup}>
           <label htmlFor="newPassword" className={styles.label}>
             New Password
@@ -53,6 +40,7 @@ const ResetPassword = () => {
             onChange={(e) => setNewPassword(e.target.value)}
             className={styles.input}
             required
+            placeholder="Enter new password"
           />
         </div>
 
@@ -61,7 +49,8 @@ const ResetPassword = () => {
         </button>
       </form>
 
-      {message && <p className={styles.message}>{message}</p>}
+      {message && <p className={styles.successMessage}>{message}</p>}
+      {error && <p className={styles.errorMessage}>{error}</p>}
     </div>
   );
 };

@@ -1,5 +1,5 @@
-import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import AdminDashboard from '../admin/AdminDashboard'
 import CreateMovies from '../admin/CreateMovies'
 import ListMovies from '../admin/ListMovies'
@@ -10,6 +10,8 @@ import UserWatchHistory from '../admin/UserWatchHistory'
 import ResetPassword from '../admin/ResetPassword'
 
 const AdminRoutes = () => {
+    const navigate = useNavigate()
+    useEffect(()=>navigate("listmovies"),[])
   return (
     <Routes>
         <Route path='/' element={<AdminDashboard/>}>

@@ -1,8 +1,24 @@
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
+import axios from "axios"; // To send the logout request
 import styles from "./AdminDashboard.module.css";
 
 const AdminDashboard = () => {
+  const navigate = useNavigate(); // Initialize useNavigate hook
+
+  const handleLogout = async () => {
+    try {
+      // Send a POST request to the logout endpoint
+      const response = await axios.post("/api/auth/logout");
+      console.log(response.data.message); // Log the success message
+
+      // Redirect to login page after logout
+      navigate("/");
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
+  };
+
   return (
     <div className={styles.dashboardContainer}>
       <div className={styles.menu}>
@@ -22,7 +38,16 @@ const AdminDashboard = () => {
               <Link to="users">List All Users</Link>
             </li>
             <li>
-              <Link to="create-movies">Create movies</Link>
+              <Link to="create-movies">Create Movies</Link>
+            </li>
+            {/* Logout Button */}
+            <li>
+              <button
+                onClick={handleLogout}
+                className={styles.logoutButton} // You can style this button
+              >
+                Logout
+              </button>
             </li>
           </ul>
         </nav>

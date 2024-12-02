@@ -5,6 +5,7 @@ import UserRoutes from './UserRoutes'
 
 const Dashboard = () => {
     const loggedIn = useSelector(state=>state.user.userInfo.role)
+    console.log(loggedIn)
   return loggedIn==="user"?<UserRoutes/>:<AdminRoutes/>
 }
 
