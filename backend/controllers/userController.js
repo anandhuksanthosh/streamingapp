@@ -24,7 +24,11 @@ exports.watchMovie = async (req, res, next) => {
     if (!movie) return res.status(404).json({ message: "Movie not found" });
 
     const user = await User.findById(req.user._id);
-    user.watchHistory.push(movie._id);
+    if (user) {
+      if (!user.watchHistory.includes(movie._id)) {
+        user.watchHistory.push(movie._id);
+      }
+    }
     await user.save();
 
     res.status(200).json({ message: "Movie watched", movie });

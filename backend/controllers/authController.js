@@ -39,7 +39,8 @@ exports.login = async (req, res, next) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch)
       return res.status(401).json({ message: "Invalid credentials" });
-
+    if (user.isBlocked)
+      return res.status(400).json({ message: "User being blocked!" });
     const token = createToken(user._id, user.role);
     res.cookie("token", token, { httpOnly: true });
 
